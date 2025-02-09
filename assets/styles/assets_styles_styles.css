@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 20px;
-    font-family: Arial, sans-serif;
+    font-family: 'Share Tech Mono', monospace;
 }
 
 .container {
@@ -21,11 +21,11 @@ body {
 }
 
 .color-section.foreground {
-    background: #FF0000;
+    background-color: #FF0000; /* Default foreground color */
 }
 
 .color-section.background {
-    background: #000000;
+    background-color: #000000; /* Default background color */
 }
 
 .color-info {

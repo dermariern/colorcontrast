@@ -1,4 +1,3 @@
-js
 function hexToRgb(hex) {
     const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
     return result ? {
@@ -32,7 +31,8 @@ function updateColorDisplay(colorId) {
     const rgb = hexToRgb(color);
     
     // Update section background
-    const section = document.getElementById(colorId).parentElement;
+    const sectionClass = colorId === 'color1' ? 'foreground' : 'background';
+    const section = document.querySelector(`.color-section.${sectionClass}`);
     section.style.backgroundColor = color;
     
     // Update hex value display
