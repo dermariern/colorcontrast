@@ -1,40 +1,99 @@
 body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
     margin: 0;
-    background-color: #f4f4f4;
+    padding: 20px;
+    font-family: Arial, sans-serif;
 }
 
 .container {
-    background: #fff;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-    text-align: center;
+    width: 694px;
+    margin: 0 auto;
 }
 
-.input-group {
+.color-sections {
+    display: flex;
+    flex-direction: column;
+}
+
+.color-section {
+    position: relative;
+    width: 100%;
+    height: 130px;
+}
+
+.color-section.foreground {
+    background: #FF0000;
+}
+
+.color-section.background {
+    background: #000000;
+}
+
+.color-info {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    color: #000000;
+}
+
+.background .color-info {
+    color: #FF0000;
+}
+
+.color-label {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.hex-value {
+    font-size: 20px;
     margin: 10px 0;
 }
 
-label {
-    margin-right: 10px;
+.rgb-values {
+    display: flex;
+    gap: 20px;
+    font-size: 18px;
 }
 
-button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    border: none;
-    background-color: #007bff;
-    color: white;
-    border-radius: 5px;
+input[type="color"] {
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
     cursor: pointer;
 }
 
-.result {
+.contrast-ratio {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.ratio-value {
+    font-size: 48px;
+    font-weight: bold;
+    color: #FF0000;
+}
+
+.wcag-ratings {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
     margin-top: 20px;
-    font-size: 1.2em;
+}
+
+.rating-star {
+    width: 40px;
+    height: 40px;
+    border: 2px solid #FF0000;
+    color: #FF0000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+
+.rating-star.active {
+    background: #FF0000;
+    color: white;
 }
