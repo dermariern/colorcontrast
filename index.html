@@ -1,30 +1,23 @@
-/index.html -->
+/index.html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Color Contrast Ratio for UI Design">
-    <meta name="robots" content="noindex, nofollow"> <!-- Prevents search indexing while in development -->
+    <meta name="robots" content="noindex, nofollow">
     <link rel="canonical" href="https://colorcontrastratio.com">
+    <!-- Add Google Font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap">
+    <!-- Add your CSS file -->
+    <link rel="stylesheet" href="assets/styles/assets_styles_styles.css">
     <title>Color Contrast Ratio</title>
+    <!-- ...existing code... -->
 </head>
+
 <body>
     <div class="contrast-checker">
-        <!-- Foreground Color Section -->
-        <div class="color-section foreground">
-            <div class="color-info">
-                <div class="label">Foreground</div>
-                <div class="hex-value" id="color1-hex">#FF0000</div>
-                <div class="rgb-group">
-                    <div class="rgb-value">R:<span id="color1-r">255</span></div>
-                    <div class="rgb-value">G:<span id="color1-g">0</span></div>
-                    <div class="rgb-value">B:<span id="color1-b">0</span></div>
-                </div>
-            </div>
-            <input type="color" id="color1" value="#FF0000">
-        </div>
-
         <!-- Background Color Section -->
         <div class="color-section background">
             <div class="color-info">
@@ -37,6 +30,20 @@
                 </div>
             </div>
             <input type="color" id="color2" value="#000000">
+        </div>
+
+        <!-- Foreground Color Section -->
+        <div class="color-section foreground">
+            <div class="color-info">
+                <div class="label">Foreground</div>
+                <div class="hex-value" id="color1-hex">#FF0000</div>
+                <div class="rgb-group">
+                    <div class="rgb-value">R:<span id="color1-r">255</span></div>
+                    <div class="rgb-value">G:<span id="color1-g">0</span></div>
+                    <div class="rgb-value">B:<span id="color1-b">0</span></div>
+                </div>
+            </div>
+            <input type="color" id="color1" value="#FF0000">
         </div>
 
         <!-- Contrast Ratio Display -->
@@ -52,4 +59,5 @@
     </div>
     <script src="scripts/scripts_script.js"></script>
 </body>
+
 </html>
