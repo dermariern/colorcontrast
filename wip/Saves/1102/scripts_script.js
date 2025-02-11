@@ -33,21 +33,17 @@ function updateColorDisplay(colorId) {
     // Get both colors and calculate ratio once
     const foregroundColor = document.getElementById('color1').value;
     const backgroundColor = document.getElementById('color2').value;
-
-    // Update extended areas with opposite colors
-    document.querySelector('.top-extend').style.backgroundColor = foregroundColor;
-    document.querySelector('.bottom-extend').style.backgroundColor = backgroundColor;
-
     const ratio = getContrastRatio(foregroundColor, backgroundColor);
 
     // Calculate heights based on contrast ratio
-    const minHeight = 80;
-    const maxHeight = window.innerHeight - 120;
+    const minHeight = 80; // minimum height for text visibility
+    const maxHeight = window.innerHeight - 120; // viewport height minus padding
     const heightRange = maxHeight - minHeight;
 
     // Enhanced ratio normalization for more dramatic difference
+    // Convert ratio range (1:1 to 21:1) to percentage (0 to 1)
     const normalizedRatio = Math.min((ratio - 1) / 20, 1);
-
+    
     // Calculate heights using a more dramatic curve
     const tallHeight = maxHeight;
     const shortHeight = minHeight + (heightRange * (1 - normalizedRatio));
@@ -55,7 +51,7 @@ function updateColorDisplay(colorId) {
     // Determine which color gets which height based on luminance
     const foreL = getLuminance(foregroundColor);
     const backL = getLuminance(backgroundColor);
-
+    
     // Higher luminance gets taller height
     const foregroundHeight = foreL > backL ? tallHeight : shortHeight;
     const backgroundHeight = backL > foreL ? tallHeight : shortHeight;
@@ -71,7 +67,7 @@ function updateColorDisplay(colorId) {
     foregroundSection.style.backgroundColor = foregroundColor;
     backgroundSection.style.backgroundColor = backgroundColor;
 
-    // Update text colors
+    // Update text colors - using contrast color for better visibility
     const foregroundInfo = document.querySelector('.foreground .color-info');
     const backgroundInfo = document.querySelector('.background .color-info');
     foregroundInfo.style.color = backgroundColor;
@@ -91,8 +87,10 @@ function updateContrastRatio() {
     const color2 = document.getElementById('color2').value;
     const ratio = getContrastRatio(color1, color2);
 
+    // Update ratio display
     document.getElementById('result').textContent = `${ratio.toFixed(2)}:1`;
 
+    // Update star ratings
     const stars = document.querySelectorAll('.rating-star');
     stars.forEach(star => {
         const level = star.dataset.level;
@@ -108,6 +106,7 @@ function updateContrastRatio() {
         star.classList.toggle('active', isActive);
     });
 
+    // Update text colors based on contrast
     updateTextColors();
 }
 

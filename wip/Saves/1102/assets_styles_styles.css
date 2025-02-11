@@ -3,54 +3,38 @@ body {
     padding: 0;
     min-height: 100vh;
     font-family: 'Share Tech Mono', monospace;
-}
-
-.top-extend {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 50vh;
-    z-index: 0;
-}
-
-.bottom-extend {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 50vh;
-    z-index: 0;
+    display: flex;
+    align-items: center;
 }
 
 .contrast-checker {
-    position: relative;
-    z-index: 2;
+    display: flex;
+    flex-direction: column;
     width: 100%;
     max-width: 694px;
+    height: 100vh;
     margin: 0 auto;
-    padding: 20px;
 }
 
 .color-section {
     position: relative;
     width: 100%;
     min-height: 80px;
-    transition: height 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 
 .color-info {
     position: absolute;
     left: 20px;
-    top: 20px;
+    top: 20px; /* Added fixed top position */
     padding: 20px;
-    z-index: 1;
-    background-color: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(4px);
+    z-index: 1; /* Ensure text stays above the color picker */
+    background-color: rgba(255, 255, 255, 0.1); /* Lighter backdrop for better readability */
+    backdrop-filter: blur(4px); /* Additional readability help */
     border-radius: 4px;
 }
 
-.label {
+.color-label {
     font-size: 24px;
     font-weight: bold;
 }
@@ -60,7 +44,7 @@ body {
     margin: 10px 0;
 }
 
-.rgb-group {
+.rgb-values {
     display: flex;
     gap: 20px;
     font-size: 18px;
@@ -81,23 +65,30 @@ input[type="color"] {
 
 .ratio-value {
     font-size: 48px;
-    margin-bottom: 20px;
+    font-weight: bold;
+    color: #FF0000;
 }
 
 .wcag-ratings {
     display: flex;
     justify-content: center;
     gap: 20px;
+    margin-top: 20px;
 }
 
 .rating-star {
-    padding: 10px 20px;
-    border-radius: 4px;
-    background: rgba(255, 255, 255, 0.1);
-    opacity: 0.3;
-    transition: opacity 0.3s ease;
+    width: 40px;
+    height: 40px;
+    border: 2px solid #FF0000;
+    color: #FF0000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
 }
 
 .rating-star.active {
-    opacity: 1;
+    background: #FF0000;
+    color: white;
 }
