@@ -33,19 +33,12 @@ function updateColorDisplay(colorId) {
     // Get both colors and calculate ratio once
     const foregroundColor = document.getElementById('color1').value;
     const backgroundColor = document.getElementById('color2').value;
-
-    // Update extended areas with opposite colors
-    document.querySelector('.top-extend').style.backgroundColor = foregroundColor;
-    document.querySelector('.bottom-extend').style.backgroundColor = backgroundColor;
-
     const ratio = getContrastRatio(foregroundColor, backgroundColor);
 
     // Calculate heights based on contrast ratio
     const minHeight = 80;
     const maxHeight = window.innerHeight - 120;
     const heightRange = maxHeight - minHeight;
-
-    // Enhanced ratio normalization for more dramatic difference
     const normalizedRatio = Math.min((ratio - 1) / 20, 1);
 
     // Calculate heights using a more dramatic curve
@@ -60,16 +53,23 @@ function updateColorDisplay(colorId) {
     const foregroundHeight = foreL > backL ? tallHeight : shortHeight;
     const backgroundHeight = backL > foreL ? tallHeight : shortHeight;
 
-    // Update sections
+    // Update sections and extended areas to match heights
     const foregroundSection = document.querySelector('.color-section.foreground');
     const backgroundSection = document.querySelector('.color-section.background');
+    const topExtend = document.querySelector('.top-extend');
+    const bottomExtend = document.querySelector('.bottom-extend');
 
+    // Update heights with transition
     foregroundSection.style.height = `${foregroundHeight}px`;
     backgroundSection.style.height = `${backgroundHeight}px`;
+    topExtend.style.height = `${backgroundHeight}px`;
+    bottomExtend.style.height = `${foregroundHeight}px`;
 
     // Update colors
     foregroundSection.style.backgroundColor = foregroundColor;
     backgroundSection.style.backgroundColor = backgroundColor;
+    topExtend.style.backgroundColor = foregroundColor;
+    bottomExtend.style.backgroundColor = backgroundColor;
 
     // Update text colors
     const foregroundInfo = document.querySelector('.foreground .color-info');
