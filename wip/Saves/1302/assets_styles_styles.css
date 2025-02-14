@@ -1,22 +1,42 @@
 body {
     margin: 0;
     padding: 0;
-    height: 100vh;
+    min-height: 100vh;
     font-family: 'Share Tech Mono', monospace;
-    overflow: hidden;
+}
+
+.top-extend {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    transition: all 0.3s ease-in-out;
+    z-index: 0;
+}
+
+.bottom-extend {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transition: all 0.3s ease-in-out;
+    z-index: 0;
 }
 
 .contrast-checker {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    width: 100vw;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 694px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
 .color-section {
     position: relative;
     width: 100%;
-    transition: height 0.3s ease-in-out;
+    min-height: 80px;
+    transition: all 0.3s ease-in-out;
 }
 
 .color-info {
@@ -55,16 +75,8 @@ input[type="color"] {
 }
 
 .contrast-ratio {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 2;
+    margin-top: 40px;
     text-align: center;
-    background-color: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(4px);
-    padding: 15px;
-    border-radius: 4px;
 }
 
 .ratio-value {

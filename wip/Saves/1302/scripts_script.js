@@ -53,34 +53,29 @@ function updateColorDisplay(colorId) {
     const foregroundHeight = foreL > backL ? tallHeight : shortHeight;
     const backgroundHeight = backL > foreL ? tallHeight : shortHeight;
 
-    // Update sections
+    // Update sections and extended areas to match heights
     const foregroundSection = document.querySelector('.color-section.foreground');
     const backgroundSection = document.querySelector('.color-section.background');
+    const topExtend = document.querySelector('.top-extend');
+    const bottomExtend = document.querySelector('.bottom-extend');
 
     // Update heights with transition
     foregroundSection.style.height = `${foregroundHeight}px`;
     backgroundSection.style.height = `${backgroundHeight}px`;
+    topExtend.style.height = `${backgroundHeight}px`;
+    bottomExtend.style.height = `${foregroundHeight}px`;
 
-    // Update background colors
+    // Update colors
     foregroundSection.style.backgroundColor = foregroundColor;
     backgroundSection.style.backgroundColor = backgroundColor;
+    topExtend.style.backgroundColor = foregroundColor;
+    bottomExtend.style.backgroundColor = backgroundColor;
 
-    // Update text colors - using opposite section's color
+    // Update text colors
     const foregroundInfo = document.querySelector('.foreground .color-info');
     const backgroundInfo = document.querySelector('.background .color-info');
-
-    // Set text color to opposite section's color
     foregroundInfo.style.color = backgroundColor;
     backgroundInfo.style.color = foregroundColor;
-
-    // Also update all child elements to use the same color
-    foregroundInfo.querySelectorAll('.label, .hex-value, .rgb-value').forEach(element => {
-        element.style.color = backgroundColor;
-    });
-
-    backgroundInfo.querySelectorAll('.label, .hex-value, .rgb-value').forEach(element => {
-        element.style.color = foregroundColor;
-    });
 
     // Update hex and RGB values
     document.getElementById(`${colorId}-hex`).textContent = color.toUpperCase();
