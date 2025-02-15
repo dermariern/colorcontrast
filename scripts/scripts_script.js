@@ -36,8 +36,8 @@ function updateColorDisplay(colorId) {
     const ratio = getContrastRatio(foregroundColor, backgroundColor);
 
     // Calculate heights based on contrast ratio
-    const minHeight = 140; // Konsistente Mindesthöhe
-    const maxHeight = Math.floor(window.innerHeight - 80); // Ganzzahlige Höhe für Safari
+    const minHeight = 160; // Erhöht von 140px
+    const maxHeight = Math.floor(window.innerHeight - 100); // Mehr Padding für Mobile
     const heightRange = maxHeight - minHeight;
     const normalizedRatio = Math.min((ratio - 1) / 20, 1);
 
@@ -45,7 +45,7 @@ function updateColorDisplay(colorId) {
     const tallHeight = maxHeight;
     const shortHeight = Math.max(
         Math.floor(minHeight + (heightRange * (1 - normalizedRatio))),
-        140 // Garantierte Mindesthöhe
+        160 // Garantierte Mindesthöhe angepasst
     );
 
     // Determine heights based on luminance
