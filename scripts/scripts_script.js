@@ -57,6 +57,17 @@ function updateColorDisplay(colorId) {
     // Update sections
     const foregroundSection = document.querySelector('.color-section.foreground');
     const backgroundSection = document.querySelector('.color-section.background');
+    const foregroundInfo = document.querySelector('.foreground .color-info');
+    const backgroundInfo = document.querySelector('.background .color-info');
+
+    // Determine position based on which section is taller
+    const isTopPosition = foregroundHeight > backgroundHeight;
+    
+    // Update positions - both info elements move together
+    foregroundInfo.classList.toggle('bottom', !isTopPosition);
+    foregroundInfo.classList.toggle('top', isTopPosition);
+    backgroundInfo.classList.toggle('bottom', !isTopPosition);
+    backgroundInfo.classList.toggle('top', isTopPosition);
 
     // Update heights with explicit pixel values and force repaint for Safari
     foregroundSection.style.height = `${Math.floor(foregroundHeight)}px`;
@@ -64,19 +75,13 @@ function updateColorDisplay(colorId) {
     foregroundSection.style.transform = 'translateZ(0)';
     backgroundSection.style.transform = 'translateZ(0)';
 
-    // Update colors
+    // Update colors and text colors
     foregroundSection.style.backgroundColor = foregroundColor;
     backgroundSection.style.backgroundColor = backgroundColor;
-
-    // Update text colors - using opposite section's color
-    const foregroundInfo = document.querySelector('.foreground .color-info');
-    const backgroundInfo = document.querySelector('.background .color-info');
-
-    // Set text color to opposite section's color
     foregroundInfo.style.color = backgroundColor;
     backgroundInfo.style.color = foregroundColor;
 
-    // Also update all child elements to use the same color
+    // Update all child elements with the same color
     foregroundInfo.querySelectorAll('.label, .hex-value, .rgb-value').forEach(element => {
         element.style.color = backgroundColor;
     });

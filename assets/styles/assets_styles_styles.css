@@ -31,10 +31,20 @@ body {
 .color-info {
     position: absolute;
     left: 20px;
-    top: 20px;
     padding: var(--color-info-padding);
     z-index: 1;
     height: auto;
+    transition: top 0.3s ease-in-out, bottom 0.3s ease-in-out;
+}
+
+/* Neue Klassen für die Position */
+.color-info.top {
+    top: 20px;
+}
+
+.color-info.bottom {
+    bottom: 20px;
+    top: auto;
 }
 
 .label {
