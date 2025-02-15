@@ -17,15 +17,20 @@ body {
     position: relative;
     width: 100%;
     transition: height 0.3s ease-in-out;
-    min-height: 140px; /* Ensure space for text content */
+    min-height: 140px;
+    height: auto;
+    transform: translate3d(0, 0, 0);         /* Standard property */
+    -webkit-transform: translate3d(0, 0, 0); /* Safari specific */
 }
 
 .color-info {
     position: absolute;
     left: 20px;
-    top: 15px; /* Reduced from 20px */
-    padding: 15px; /* Reduced from 20px */
+    top: 15px;
+    padding: 15px;
     z-index: 1;
+    height: auto;
+    /* Explizite Höhenangabe für Safari */
 }
 
 .label {

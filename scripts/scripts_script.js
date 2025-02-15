@@ -36,16 +36,16 @@ function updateColorDisplay(colorId) {
     const ratio = getContrastRatio(foregroundColor, backgroundColor);
 
     // Calculate heights based on contrast ratio
-    const minHeight = 120; // Minimum height for text content
-    const maxHeight = window.innerHeight - 80;
+    const minHeight = 140; // Konsistente Mindesthöhe
+    const maxHeight = Math.floor(window.innerHeight - 80); // Ganzzahlige Höhe für Safari
     const heightRange = maxHeight - minHeight;
     const normalizedRatio = Math.min((ratio - 1) / 20, 1);
 
     // Calculate heights using a more dramatic curve
     const tallHeight = maxHeight;
     const shortHeight = Math.max(
-        minHeight + (heightRange * (1 - normalizedRatio)),
-        140 // Garantiert Mindesthöhe auch bei umgekehrtem Kontrastverhältnis
+        Math.floor(minHeight + (heightRange * (1 - normalizedRatio))),
+        140 // Garantierte Mindesthöhe
     );
 
     // Determine heights based on luminance
@@ -58,13 +58,13 @@ function updateColorDisplay(colorId) {
     const foregroundSection = document.querySelector('.color-section.foreground');
     const backgroundSection = document.querySelector('.color-section.background');
 
-    // Update heights and colors
-    foregroundSection.style.height = `${foregroundHeight}px`;
-    backgroundSection.style.height = `${backgroundHeight}px`;
-    foregroundSection.style.backgroundColor = foregroundColor;
-    backgroundSection.style.backgroundColor = backgroundColor;
+    // Update heights with explicit pixel values and force repaint for Safari
+    foregroundSection.style.height = `${Math.floor(foregroundHeight)}px`;
+    backgroundSection.style.height = `${Math.floor(backgroundHeight)}px`;
+    foregroundSection.style.transform = 'translateZ(0)';
+    backgroundSection.style.transform = 'translateZ(0)';
 
-    // Update background colors
+    // Update colors
     foregroundSection.style.backgroundColor = foregroundColor;
     backgroundSection.style.backgroundColor = backgroundColor;
 
