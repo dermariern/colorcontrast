@@ -1,3 +1,8 @@
+:root {
+    --min-section-height: min(180px, 25vh);
+    --color-info-padding: 15px;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -17,8 +22,7 @@ body {
     position: relative;
     width: 100%;
     transition: height 0.3s ease-in-out;
-    min-height: 180px;
-    /* Erhöht von 140px für mehr Platz */
+    min-height: var(--min-section-height);
     height: auto;
     transform: translate3d(0, 0, 0);
     -webkit-transform: translate3d(0, 0, 0);
@@ -28,7 +32,7 @@ body {
     position: absolute;
     left: 20px;
     top: 20px;
-    padding: 15px;
+    padding: var(--color-info-padding);
     z-index: 1;
     height: auto;
 }
@@ -95,29 +99,16 @@ input[type="color"] {
 
 /* iOS Safari spezifische Anpassungen */
 @supports (-webkit-touch-callout: none) {
-    .color-section {
-        min-height: 200px;
-    }
-
-    .contrast-checker {
-        padding-bottom: env(safe-area-inset-bottom);
+    :root {
+        --min-section-height: max(180px, 30vh);
+        --color-info-padding: 12px;
     }
 }
 
 /* Mobil-Optimierungen */
 @media screen and (max-width: 480px) {
-    .color-section {
-        min-height: 200px;
-    }
-}
-
-/* Media Query ans Ende der Datei */
-@media screen and (max-width: 480px) {
-    .color-section {
-        min-height: 180px;
-    }
-
-    .color-info {
-        padding: 10px;
+    :root {
+        --min-section-height: max(200px, 35vh);
+        --color-info-padding: 10px;
     }
 }
