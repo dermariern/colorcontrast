@@ -17,7 +17,8 @@ body {
     position: relative;
     width: 100%;
     transition: height 0.3s ease-in-out;
-    min-height: 160px; /* Erhöht von 140px für mehr Platz */
+    min-height: 180px;
+    /* Erhöht von 140px für mehr Platz */
     height: auto;
     transform: translate3d(0, 0, 0);
     -webkit-transform: translate3d(0, 0, 0);
@@ -26,8 +27,8 @@ body {
 .color-info {
     position: absolute;
     left: 20px;
-    top: 15px;
-    padding: 12px; /* Reduziert von 15px */
+    top: 20px;
+    padding: 15px;
     z-index: 1;
     height: auto;
 }
@@ -92,12 +93,30 @@ input[type="color"] {
     opacity: 1;
 }
 
+/* iOS Safari spezifische Anpassungen */
+@supports (-webkit-touch-callout: none) {
+    .color-section {
+        min-height: 200px;
+    }
+
+    .contrast-checker {
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+}
+
+/* Mobil-Optimierungen */
+@media screen and (max-width: 480px) {
+    .color-section {
+        min-height: 200px;
+    }
+}
+
 /* Media Query ans Ende der Datei */
 @media screen and (max-width: 480px) {
     .color-section {
         min-height: 180px;
     }
-    
+
     .color-info {
         padding: 10px;
     }
