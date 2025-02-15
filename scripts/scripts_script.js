@@ -43,7 +43,10 @@ function updateColorDisplay(colorId) {
 
     // Calculate heights using a more dramatic curve
     const tallHeight = maxHeight;
-    const shortHeight = minHeight + (heightRange * (1 - normalizedRatio));
+    const shortHeight = Math.max(
+        minHeight + (heightRange * (1 - normalizedRatio)),
+        140 // Garantiert Mindesthöhe auch bei umgekehrtem Kontrastverhältnis
+    );
 
     // Determine heights based on luminance
     const foreL = getLuminance(foregroundColor);

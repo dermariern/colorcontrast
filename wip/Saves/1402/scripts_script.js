@@ -36,8 +36,8 @@ function updateColorDisplay(colorId) {
     const ratio = getContrastRatio(foregroundColor, backgroundColor);
 
     // Calculate heights based on contrast ratio
-    const minHeight = 120; // Minimum height for text content
-    const maxHeight = window.innerHeight - 80;
+    const minHeight = 80;
+    const maxHeight = window.innerHeight - 120;
     const heightRange = maxHeight - minHeight;
     const normalizedRatio = Math.min((ratio - 1) / 20, 1);
 
@@ -45,9 +45,11 @@ function updateColorDisplay(colorId) {
     const tallHeight = maxHeight;
     const shortHeight = minHeight + (heightRange * (1 - normalizedRatio));
 
-    // Determine heights based on luminance
+    // Determine which color gets which height based on luminance
     const foreL = getLuminance(foregroundColor);
     const backL = getLuminance(backgroundColor);
+
+    // Higher luminance gets taller height
     const foregroundHeight = foreL > backL ? tallHeight : shortHeight;
     const backgroundHeight = backL > foreL ? tallHeight : shortHeight;
 
@@ -55,11 +57,9 @@ function updateColorDisplay(colorId) {
     const foregroundSection = document.querySelector('.color-section.foreground');
     const backgroundSection = document.querySelector('.color-section.background');
 
-    // Update heights and colors
+    // Update heights with transition
     foregroundSection.style.height = `${foregroundHeight}px`;
     backgroundSection.style.height = `${backgroundHeight}px`;
-    foregroundSection.style.backgroundColor = foregroundColor;
-    backgroundSection.style.backgroundColor = backgroundColor;
 
     // Update background colors
     foregroundSection.style.backgroundColor = foregroundColor;
