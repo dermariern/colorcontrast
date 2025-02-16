@@ -43,8 +43,8 @@ body {
 }
 
 .color-info.bottom {
-    top: 20px;
-    bottom: auto;
+    bottom: calc(100% - 140px); /* Positioniert das Label im gleichen Abstand von oben wie .bottom */
+    top: auto;
 }
 
 .label {
