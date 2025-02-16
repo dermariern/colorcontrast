@@ -28,30 +28,23 @@ body {
     -webkit-transform: translate3d(0, 0, 0);
 }
 
-.color-info {
-    position: absolute;
-    left: 20px;
-    padding: var(--color-info-padding);
-    z-index: 1;
-    height: auto;
-    /* transition: top 0.3s ease-in-out, bottom 0.3s ease-in-out; */
-    transition: all 0.3s ease-in-out;
-}
-
-/* Neue Klassen für die Position */
+/* Default positions */
 .color-info.top {
-    /* bottom: 20px; /* Ausrichtung von der unteren Kante */
-    top: 20px;
+    top: 20px; /* Background info starts at top */
 }
 
 .color-info.bottom {
-    /* bottom: calc(100% - 140px); /* Positioniert das Label im gleichen Abstand von oben wie .bottom */
-    top: 20px;
+    top: 20px; /* Foreground info starts at top */
 }
 
+/* Switched positions when contrast reverses */
 .color-info.top.switched {
     top: auto;
-    bottom: 20px; /* Bei Umkehrung: von unten ausgerichtet */
+    bottom: 20px; /* Background info moves to bottom */
+}
+
+.color-info.bottom {
+    top: 20px; /* Foreground info stays at top */
 }
 
 .label {

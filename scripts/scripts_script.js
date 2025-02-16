@@ -60,13 +60,13 @@ function updateColorDisplay(colorId) {
     const foregroundInfo = document.querySelector('.foreground .color-info');
     const backgroundInfo = document.querySelector('.background .color-info');
 
-    // Determine position based on which section is taller
-    const isTopPosition = foregroundHeight > backgroundHeight;
-    
-    // Update positions - both info elements move together
-    foregroundInfo.classList.toggle('switched', !isTopPosition);
-    foregroundInfo.classList.toggle('top', isTopPosition);
-    backgroundInfo.classList.toggle('bottom', !isTopPosition);
+    // Determine position based on luminance
+    const isReversed = foreL > backL;  // true when foreground is lighter than background
+
+    // Update positions
+    foregroundInfo.classList.add('bottom');  // Always keep bottom class
+    backgroundInfo.classList.add('top');     // Always keep top class
+    backgroundInfo.classList.toggle('switched', isReversed);  // Only background moves
 
     // Update heights with explicit pixel values and force repaint for Safari
     foregroundSection.style.height = `${Math.floor(foregroundHeight)}px`;
@@ -74,7 +74,7 @@ function updateColorDisplay(colorId) {
     foregroundSection.style.transform = 'translateZ(0)';
     backgroundSection.style.transform = 'translateZ(0)';
 
-        // Update colors and text colors
+    // Update colors and text colors
     foregroundSection.style.backgroundColor = foregroundColor;
     backgroundSection.style.backgroundColor = backgroundColor;
     foregroundInfo.style.color = backgroundColor;
