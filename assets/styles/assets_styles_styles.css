@@ -39,11 +39,12 @@ body {
 
 /* Neue Klassen für die Position */
 .color-info.top {
-    top: 20px;
+    /* bottom: 20px; /* Ausrichtung von der unteren Kante */
+    top: auto;
 }
 
 .color-info.bottom {
-    bottom: calc(100% - 140px); /* Positioniert das Label im gleichen Abstand von oben wie .bottom */
+    /* bottom: calc(100% - 140px); /* Positioniert das Label im gleichen Abstand von oben wie .bottom */
     top: auto;
 }
 
