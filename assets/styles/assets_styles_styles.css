@@ -34,18 +34,24 @@ body {
     padding: var(--color-info-padding);
     z-index: 1;
     height: auto;
-    transition: top 0.3s ease-in-out, bottom 0.3s ease-in-out;
+    /* transition: top 0.3s ease-in-out, bottom 0.3s ease-in-out; */
+    transition: all 0.3s ease-in-out;
 }
 
 /* Neue Klassen für die Position */
 .color-info.top {
     /* bottom: 20px; /* Ausrichtung von der unteren Kante */
-    top: auto;
+    top: 20px;
 }
 
 .color-info.bottom {
     /* bottom: calc(100% - 140px); /* Positioniert das Label im gleichen Abstand von oben wie .bottom */
+    top: 20px;
+}
+
+.color-info.top.switched {
     top: auto;
+    bottom: 20px; /* Bei Umkehrung: von unten ausgerichtet */
 }
 
 .label {
