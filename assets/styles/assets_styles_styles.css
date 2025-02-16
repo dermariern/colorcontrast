@@ -43,8 +43,8 @@ body {
 }
 
 .color-info.bottom {
-    bottom: 20px;
-    top: auto;
+    top: 20px;
+    bottom: auto;
 }
 
 .label {
