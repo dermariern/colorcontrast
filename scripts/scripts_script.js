@@ -61,7 +61,7 @@ function updateColorDisplay(colorId) {
     const backgroundInfo = document.querySelector('.background .color-info');
 
     // Determine position based on luminance
-    const isReversed = foreL > backL;  // true when foreground is lighter than background
+    const isReversed = backL > foreL;  // true when background is lighter than foreground
 
     // Update positions
     foregroundInfo.classList.add('bottom');  // Always keep bottom class
