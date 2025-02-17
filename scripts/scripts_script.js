@@ -80,6 +80,10 @@ function updateColorDisplay(colorId) {
     foregroundInfo.style.color = backgroundColor;
     backgroundInfo.style.color = foregroundColor;
 
+    // Update contrast ratio color
+    const contrastRatio = document.querySelector('.contrast-ratio');
+    contrastRatio.style.color = backgroundColor;
+
     // Update all child elements with the same color
     foregroundInfo.querySelectorAll('.label, .hex-value, .rgb-value').forEach(element => {
         element.style.color = backgroundColor;
