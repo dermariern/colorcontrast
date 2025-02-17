@@ -28,6 +28,15 @@ body {
     -webkit-transform: translate3d(0, 0, 0);
 }
 
+.color-info {
+    position: absolute;
+    left: 40px; /* Basis-Seitenabstand für alle color-info Elemente */
+    padding: var(--color-info-padding);
+    z-index: 1;
+    height: auto;
+    transition: all 0.3s ease-in-out;
+}
+
 /* Default positions */
 .color-info.top {
     top: 20px; /* Background info starts at top */
