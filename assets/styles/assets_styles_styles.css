@@ -35,7 +35,7 @@ body {
     padding: var(--color-info-padding);
     z-index: 1;
     height: auto;
-    transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 
 /* Default positions */
