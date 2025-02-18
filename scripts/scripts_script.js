@@ -82,6 +82,7 @@ function updateColorDisplay(colorId) {
 
     // Update contrast ratio color and position
     const contrastRatio = document.querySelector('.contrast-ratio');
+    contrastRatio.style.color = isReversed ? foregroundColor : backgroundColor;
     contrastRatio.classList.toggle('switched', isReversed);
 
     // Update all child elements with the same color
