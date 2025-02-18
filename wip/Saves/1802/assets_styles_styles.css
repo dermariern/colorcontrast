@@ -86,19 +86,15 @@ input[type="color"] {
 
 .contrast-ratio {
     position: fixed;
+    bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 2;
     text-align: center;
+    /* background-color: rgba(255, 255, 255, 0.1); */
+    /* backdrop-filter: blur(4px); */
     padding: 15px;
     border-radius: 4px;
-    transition: all 0.3s ease-in-out;
-    bottom: 20px; /* Default position */
-}
-
-.contrast-ratio.switched {
-    bottom: auto;
-    top: 20px;
 }
 
 .ratio-value {
