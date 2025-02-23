@@ -21,6 +21,7 @@ body {
 .color-section {
     position: relative;
     width: 100%;
+    cursor: pointer;
     transition: height 0.3s ease-in-out;
     min-height: var(--min-section-height);
     height: auto;
@@ -77,14 +78,13 @@ body {
 }
 
 input[type="color"] {
+    position: absolute;
     opacity: 0;
-    position: fixed; /* Änderung von absolute zu fixed */
-    top: 50%;      /* Zentriert vertikal */
-    left: 50%;     /* Zentriert horizontal */
-    transform: translate(-50%, -50%); /* Perfekte Zentrierung */
-    width: 100px;  /* Größerer Klickbereich */
-    height: 100px; /* Größerer Klickbereich */
-    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    cursor: pointer;
 }
 
 .contrast-ratio {
@@ -133,9 +133,18 @@ input[type="color"] {
         --min-section-height: max(180px, 30vh);
         --color-info-padding: 12px;
     }
+
+    input[type="color"] {
+        -webkit-appearance: none;
+        appearance: none;
+        font-size: 16px;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
 }
 
-/* Mobil-Optimierungen */
+/* Mobile Optimierungen */
 @media screen and (max-width: 480px) {
     :root {
         --min-section-height: max(200px, 35vh);

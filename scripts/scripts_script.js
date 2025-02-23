@@ -145,11 +145,20 @@ document.getElementById('color2').addEventListener('input', () => updateColorDis
 
 // Event Listeners für die Sections
 document.querySelectorAll('.color-section').forEach(section => {
+    const colorInput = section.querySelector('input[type="color"]');
+    
+    // Click-Event für die Section
     section.addEventListener('click', (e) => {
-        const colorInput = section.querySelector('input[type="color"]');
-        if (colorInput) {
-            colorInput.click();
-        }
+        // Verhindert Mehrfach-Trigger auf iOS
+        if (e.target === colorInput) return;
+        colorInput.click();
+    });
+
+    // Touch-Event für iOS
+    section.addEventListener('touchend', (e) => {
+        // Verhindert Mehrfach-Trigger auf iOS
+        if (e.target === colorInput) return;
+        colorInput.click();
     });
 });
 
