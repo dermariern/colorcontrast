@@ -1,0 +1,57 @@
+/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Color Contrast Ratio for UI Design">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="canonical" href="https://colorcontrastratio.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap">
+    <link rel="stylesheet" href="assets/styles/assets_styles_styles.css">
+    <title>Color Contrast Ratio</title>
+</head>
+<body>
+    <div class="contrast-checker">
+        <!-- Background Color Section -->
+        <div class="color-section background">
+            <div class="color-info">
+                <div class="label">Background</div>
+                <div class="hex-value" id="color2-hex">#11053B</div>
+                <div class="rgb-group">
+                    <div class="rgb-value">R:<span id="color2-r">0</span></div>
+                    <div class="rgb-value">G:<span id="color2-g">0</span></div>
+                    <div class="rgb-value">B:<span id="color2-b">0</span></div>
+                </div>
+            </div>
+            <input type="color" id="color2" value="#11053B">
+        </div>
+
+        <!-- Foreground Color Section -->
+        <div class="color-section foreground">
+            <div class="color-info">
+                <div class="label">Foreground</div>
+                <div class="hex-value" id="color1-hex">#F5EC00</div>
+                <div class="rgb-group">
+                    <div class="rgb-value">R:<span id="color1-r">255</span></div>
+                    <div class="rgb-value">G:<span id="color1-g">0</span></div>
+                    <div class="rgb-value">B:<span id="color1-b">0</span></div>
+                </div>
+            </div>
+            <input type="color" id="color1" value="#F5EC00">
+        </div>
+
+        <!-- Contrast Ratio Display -->
+        <div class="contrast-ratio">
+            <div class="ratio-value" id="result">5.25:1</div>
+            <div class="wcag-ratings">
+                <div class="rating-star" data-level="AA" data-size="normal">AA</div>
+                <div class="rating-star" data-level="AA" data-size="large">AA</div>
+                <div class="rating-star" data-level="AAA" data-size="normal">AAA</div>
+                <div class="rating-star" data-level="AAA" data-size="large">AAA</div>
+            </div>
+        </div>
+    </div>
+    <script src="scripts/scripts_script.js"></script>
+</body>
+</html>

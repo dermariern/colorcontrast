@@ -143,16 +143,6 @@ function updateTextColors() {
 document.getElementById('color1').addEventListener('input', () => updateColorDisplay('color1'));
 document.getElementById('color2').addEventListener('input', () => updateColorDisplay('color2'));
 
-// Event Listeners für die Sections
-document.querySelectorAll('.color-section').forEach(section => {
-    section.addEventListener('click', (e) => {
-        const colorInput = section.querySelector('input[type="color"]');
-        if (colorInput) {
-            colorInput.click();
-        }
-    });
-});
-
 // Initialize display
 updateColorDisplay('color1');
 updateColorDisplay('color2');

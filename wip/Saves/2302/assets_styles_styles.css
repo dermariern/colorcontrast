@@ -78,13 +78,10 @@ body {
 
 input[type="color"] {
     opacity: 0;
-    position: fixed; /* Änderung von absolute zu fixed */
-    top: 50%;      /* Zentriert vertikal */
-    left: 50%;     /* Zentriert horizontal */
-    transform: translate(-50%, -50%); /* Perfekte Zentrierung */
-    width: 100px;  /* Größerer Klickbereich */
-    height: 100px; /* Größerer Klickbereich */
-    pointer-events: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
 }
 
 .contrast-ratio {
