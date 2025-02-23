@@ -110,19 +110,30 @@ function updateContrastRatio() {
 
     document.getElementById('result').textContent = `${ratio.toFixed(2)}:1`;
 
-    const stars = document.querySelectorAll('.rating-star');
-    stars.forEach(star => {
-        const level = star.dataset.level;
-        const size = star.dataset.size;
-
-        let isActive = false;
-        if (size === 'large') {
-            isActive = (level === 'AA' && ratio >= 3.0) || (level === 'AAA' && ratio >= 4.5);
-        } else {
-            isActive = (level === 'AA' && ratio >= 4.5) || (level === 'AAA' && ratio >= 7.0);
-        }
-
-        star.classList.toggle('active', isActive);
+    // Update rating boxes
+    const ratingBoxes = document.querySelectorAll('.rating-box');
+    const maxRatio = 7.0; // Höchster WCAG-Wert (AAA Normal)
+    
+    ratingBoxes.forEach(box => {
+        const requiredRatio = parseFloat(box.dataset.ratio);
+        const isActive = ratio >= requiredRatio;
+        
+        // Set active state
+        box.classList.toggle('active', isActive);
+        
+        // Update height based on absolute ratio position
+        const baseHeight = 60; // Mindesthöhe
+        const maxHeight = 120; // Maximalhöhe
+        const heightRatio = Math.min(ratio / maxRatio, 1); // Verhältnis zum maximalen WCAG-Wert
+        const newHeight = baseHeight + (maxHeight - baseHeight) * heightRatio;
+        
+        // Box soll nur bis zur eigenen Grenze wachsen
+        const limitedHeight = Math.min(
+            newHeight,
+            baseHeight + (maxHeight - baseHeight) * (requiredRatio / maxRatio)
+        );
+        
+        box.style.height = `${limitedHeight}px`;
     });
 
     updateTextColors();
