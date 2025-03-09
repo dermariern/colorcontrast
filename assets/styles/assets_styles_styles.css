@@ -112,15 +112,18 @@ input[type="color"] {
 /* ...existing code... */
 
 .wcag-ratings-vertical {
-    position: absolute;
+    position: fixed;
     right: 40px;
-    height: 100%;
-    display: block;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
     z-index: 3;
 }
 
 .rating-box {
-    position: absolute;
+    position: relative;  /* Änderung von absolute zu relative */
     right: 0;
     width: 120px;
     padding: 15px;

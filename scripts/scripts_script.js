@@ -130,22 +130,31 @@ function updateContrastRatio() {
     foregroundSection.style.height = `${foregroundHeight}px`;
     backgroundSection.style.height = `${maxHeight - foregroundHeight}px`;
 
-    // Update rating boxes positions
+     // Update rating boxes positions and colors
     const ratingBoxes = document.querySelectorAll('.rating-box');
-    const maxRatio = 7.0; // AAA Normal threshold
+    const containerHeight = window.innerHeight;
+    const boxSpacing = 60; // Abstand zwischen den Boxen
     
-    ratingBoxes.forEach(box => {
+    // Definiere die gewünschte Reihenfolge und Positionen
+    const ratingPositions = [
+        { ratio: 7.0, position: containerHeight * 0.2 },  // AAA Normal - oberste Position
+        { ratio: 4.5, position: containerHeight * 0.4 },  // AAA Large 
+        { ratio: 4.5, position: containerHeight * 0.6 },  // AA Normal
+        { ratio: 3.0, position: containerHeight * 0.8 }   // AA Large - unterste Position
+    ];
+
+    ratingBoxes.forEach((box, index) => {
         const requiredRatio = parseFloat(box.dataset.ratio);
         const isActive = ratio >= requiredRatio;
-        
         box.classList.toggle('active', isActive);
-        
-        // Calculate position - higher ratios should be positioned higher
-        const position = maxHeight * (1 - (requiredRatio / maxRatio));
-        box.style.top = `${position}px`;
-        
-        // Set color based on position relative to foreground section
-        box.style.color = position < foregroundHeight ? backgroundColor : foregroundColor;
+
+        // Position entsprechend der definierten Reihenfolge setzen
+        const position = ratingPositions[index].position;
+        box.style.transform = `translateY(${position}px)`;
+
+        // Farbe basierend auf Position relativ zur Section setzen
+        const isInBackgroundSection = position < foregroundSection.offsetTop;
+        box.style.color = isInBackgroundSection ? backgroundColor : foregroundColor;
     });
 
     updateTextColors();
