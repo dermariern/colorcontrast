@@ -107,53 +107,48 @@ function updateContrastRatio() {
     const color1 = document.getElementById('color1').value;
     const color2 = document.getElementById('color2').value;
     const ratio = getContrastRatio(color1, color2);
-
+    
     document.getElementById('result').textContent = `${ratio.toFixed(2)}:1`;
-
-    // Get both sections
+    
+    // Get sections
     const foregroundSection = document.querySelector('.color-section.foreground');
     const backgroundSection = document.querySelector('.color-section.background');
     
-    // Calculate heights based on contrast ratio
+    // Calculate heights
     const minHeight = 180;
     const maxHeight = Math.floor(window.innerHeight - 120);
     const heightRange = maxHeight - minHeight;
     const normalizedRatio = Math.min((ratio - 1) / 20, 1);
     
-    // Calculate section heights
+    // Set section heights
     const foregroundHeight = Math.max(
         Math.floor(minHeight + (heightRange * normalizedRatio)),
         180
     );
-    
-    // Update sections height
     foregroundSection.style.height = `${foregroundHeight}px`;
     backgroundSection.style.height = `${maxHeight - foregroundHeight}px`;
 
-     // Update rating boxes positions and colors
+    // Update rating boxes
     const ratingBoxes = document.querySelectorAll('.rating-box');
     const containerHeight = window.innerHeight;
-    const boxSpacing = 60; // Abstand zwischen den Boxen
     
-    // Definiere die gewünschte Reihenfolge und Positionen
-    const ratingPositions = [
-        { ratio: 7.0, position: containerHeight * 0.2 },  // AAA Normal - oberste Position
-        { ratio: 4.5, position: containerHeight * 0.4 },  // AAA Large 
-        { ratio: 4.5, position: containerHeight * 0.6 },  // AA Normal
-        { ratio: 3.0, position: containerHeight * 0.8 }   // AA Large - unterste Position
-    ];
-
-    ratingBoxes.forEach((box, index) => {
+    // Fixed positions for ratings (from top)
+    const positions = {
+        '7.0': containerHeight * 0.2,  // AAA Normal
+        '4.5': containerHeight * 0.4,  // AAA Large & AA Normal
+        '3.0': containerHeight * 0.6   // AA Large
+    };
+    
+    ratingBoxes.forEach(box => {
         const requiredRatio = parseFloat(box.dataset.ratio);
         const isActive = ratio >= requiredRatio;
         box.classList.toggle('active', isActive);
-
-        // Position entsprechend der definierten Reihenfolge setzen
-        const position = ratingPositions[index].position;
-        box.style.transform = `translateY(${position}px)`;
-
-        // Farbe basierend auf Position relativ zur Section setzen
-        const isInBackgroundSection = position < foregroundSection.offsetTop;
+        
+        const position = positions[requiredRatio.toString()];
+        box.style.top = `${position}px`;
+        
+        // Set color based on position
+        const isInBackgroundSection = position < foregroundHeight;
         box.style.color = isInBackgroundSection ? backgroundColor : foregroundColor;
     });
 
