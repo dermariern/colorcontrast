@@ -104,35 +104,48 @@ function updateColorDisplay(colorId) {
 }
 
 function updateContrastRatio() {
-    // ...existing code...
+    const color1 = document.getElementById('color1').value;
+    const color2 = document.getElementById('color2').value;
+    const ratio = getContrastRatio(color1, color2);
 
+    document.getElementById('result').textContent = `${ratio.toFixed(2)}:1`;
+
+    // Get both sections
+    const foregroundSection = document.querySelector('.color-section.foreground');
+    const backgroundSection = document.querySelector('.color-section.background');
+    
+    // Calculate heights based on contrast ratio
+    const minHeight = 180;
+    const maxHeight = Math.floor(window.innerHeight - 120);
+    const heightRange = maxHeight - minHeight;
+    const normalizedRatio = Math.min((ratio - 1) / 20, 1);
+    
+    // Calculate section heights
+    const foregroundHeight = Math.max(
+        Math.floor(minHeight + (heightRange * normalizedRatio)),
+        180
+    );
+    
+    // Update sections height
+    foregroundSection.style.height = `${foregroundHeight}px`;
+    backgroundSection.style.height = `${maxHeight - foregroundHeight}px`;
+
+    // Update rating boxes positions
+    const ratingBoxes = document.querySelectorAll('.rating-box');
+    const maxRatio = 7.0; // AAA Normal threshold
+    
     ratingBoxes.forEach(box => {
         const requiredRatio = parseFloat(box.dataset.ratio);
         const isActive = ratio >= requiredRatio;
         
-        // Set active state
         box.classList.toggle('active', isActive);
         
-        // Update height and position as before
-        const baseHeight = 60;
-        const maxHeight = 120;
-        let newHeight = baseHeight + (maxHeight - baseHeight) * (ratio / maxRatio);
+        // Calculate position - higher ratios should be positioned higher
+        const position = maxHeight * (1 - (requiredRatio / maxRatio));
+        box.style.top = `${position}px`;
         
-        if (requiredRatio < maxRatio) {
-            newHeight = Math.min(newHeight, baseHeight + (maxHeight - baseHeight) * (requiredRatio / maxRatio));
-        }
-        box.style.height = `${newHeight}px`;
-        
-        // Calculate vertical position
-        const offset = fgHeight * (1 - (requiredRatio / maxRatio));
-        box.style.top = `${offset}px`;
-
-        // Set color based on position
-        // Wenn die Box über der Hälfte der Gesamthöhe liegt, nimm die Foreground-Farbe
-        // Ansonsten nimm die Background-Farbe
-        const totalHeight = foregroundSection.clientHeight + document.querySelector('.color-section.background').clientHeight;
-        const isInUpperHalf = offset < totalHeight / 2;
-        box.style.color = isInUpperHalf ? foregroundColor : backgroundColor;
+        // Set color based on position relative to foreground section
+        box.style.color = position < foregroundHeight ? backgroundColor : foregroundColor;
     });
 
     updateTextColors();
