@@ -104,16 +104,8 @@ function updateColorDisplay(colorId) {
 }
 
 function updateContrastRatio() {
-    const color1 = document.getElementById('color1').value;
-    const color2 = document.getElementById('color2').value;
-    const ratio = getContrastRatio(color1, color2);
+    // ...existing code...
 
-    document.getElementById('result').textContent = `${ratio.toFixed(2)}:1`;
-
-    // Update rating boxes
-    const ratingBoxes = document.querySelectorAll('.rating-box');
-    const maxRatio = 7.0; // Höchster WCAG-Wert (AAA Normal)
-    
     ratingBoxes.forEach(box => {
         const requiredRatio = parseFloat(box.dataset.ratio);
         const isActive = ratio >= requiredRatio;
@@ -121,19 +113,26 @@ function updateContrastRatio() {
         // Set active state
         box.classList.toggle('active', isActive);
         
-        // Update height based on absolute ratio position
-        const baseHeight = 60; // Mindesthöhe
-        const maxHeight = 120; // Maximalhöhe
-        const heightRatio = Math.min(ratio / maxRatio, 1); // Verhältnis zum maximalen WCAG-Wert
-        const newHeight = baseHeight + (maxHeight - baseHeight) * heightRatio;
+        // Update height and position as before
+        const baseHeight = 60;
+        const maxHeight = 120;
+        let newHeight = baseHeight + (maxHeight - baseHeight) * (ratio / maxRatio);
         
-        // Box soll nur bis zur eigenen Grenze wachsen
-        const limitedHeight = Math.min(
-            newHeight,
-            baseHeight + (maxHeight - baseHeight) * (requiredRatio / maxRatio)
-        );
+        if (requiredRatio < maxRatio) {
+            newHeight = Math.min(newHeight, baseHeight + (maxHeight - baseHeight) * (requiredRatio / maxRatio));
+        }
+        box.style.height = `${newHeight}px`;
         
-        box.style.height = `${limitedHeight}px`;
+        // Calculate vertical position
+        const offset = fgHeight * (1 - (requiredRatio / maxRatio));
+        box.style.top = `${offset}px`;
+
+        // Set color based on position
+        // Wenn die Box über der Hälfte der Gesamthöhe liegt, nimm die Foreground-Farbe
+        // Ansonsten nimm die Background-Farbe
+        const totalHeight = foregroundSection.clientHeight + document.querySelector('.color-section.background').clientHeight;
+        const isInUpperHalf = offset < totalHeight / 2;
+        box.style.color = isInUpperHalf ? foregroundColor : backgroundColor;
     });
 
     updateTextColors();

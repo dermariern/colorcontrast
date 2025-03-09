@@ -112,28 +112,27 @@ input[type="color"] {
 /* ...existing code... */
 
 .wcag-ratings-vertical {
-    position: fixed;
+    position: absolute;  /* Änderung von fixed zu absolute */
     right: 40px;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
+    top: 0;             /* Änderung von 50% zu 0 */
+    height: 100%;       /* Neu */
+    display: block;     /* Änderung von flex zu block */
     z-index: 3;
 }
 
 .rating-box {
+    position: absolute;
+    right: 0;
     width: 120px;
     padding: 15px;
     border-radius: 8px;
-    background: rgba(255, 255, 255, 0.1);
+    /* background: rgba(255, 255, 255, 0.1); <- remove background */
     opacity: 0.3;
     transition: all 0.3s ease-in-out;
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 15px;
-    position: relative;
 }
 
 .rating-box::before {
