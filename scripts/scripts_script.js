@@ -164,10 +164,22 @@ function updateContrastRatio() {
     const backL = getLuminance(backgroundColor);
     const isReversed = backL > foreL;
     
-    // Set color based on which section it appears in (same as contrast ratio)
+    // Set color and position based on which section it appears in (same as contrast ratio)
     if (ratingDisplay) {
         ratingDisplay.style.color = isReversed ? foregroundColor : backgroundColor;
         ratingDisplay.classList.toggle('switched', isReversed);
+        
+        // Explicitly set position for iOS Safari compatibility
+        if (isReversed) {
+            ratingDisplay.style.bottom = 'auto';
+            ratingDisplay.style.top = '20px';
+        } else {
+            ratingDisplay.style.top = 'auto';
+            ratingDisplay.style.bottom = '20px';
+        }
+        
+        // Force repaint for iOS Safari
+        ratingDisplay.style.transform = 'translateZ(0)';
     }
 
     updateTextColors();

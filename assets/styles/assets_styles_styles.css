@@ -128,6 +128,11 @@ input[type="color"] {
     align-items: flex-start;
     gap: 8px;
     z-index: 10;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    will-change: color, top, bottom;
 }
 
 .rating-display.switched {
