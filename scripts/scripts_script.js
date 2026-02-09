@@ -106,6 +106,8 @@ function updateColorDisplay(colorId) {
 function updateContrastRatio() {
     const color1 = document.getElementById('color1').value;
     const color2 = document.getElementById('color2').value;
+    const foregroundColor = color1;
+    const backgroundColor = color2;
     const ratio = getContrastRatio(color1, color2);
     
     document.getElementById('result').textContent = `${ratio.toFixed(2)}:1`;
@@ -129,7 +131,6 @@ function updateContrastRatio() {
     backgroundSection.style.height = `${maxHeight - foregroundHeight}px`;
 
     // Update rating boxes
-    const ratingBoxes = document.querySelectorAll('.rating-box');
     const ratingDisplay = document.querySelector('.rating-display');
     
     // Define rating levels
@@ -158,9 +159,15 @@ function updateContrastRatio() {
     document.getElementById('current-rating-label').textContent = currentLevel.label;
     document.getElementById('current-rating-desc').textContent = currentLevel.desc;
     
-    // Set color based on section
+    // Get luminance values
+    const foreL = getLuminance(foregroundColor);
+    const backL = getLuminance(backgroundColor);
+    const isReversed = backL > foreL;
+    
+    // Set color based on which section it appears in (same as contrast ratio)
     if (ratingDisplay) {
-        ratingDisplay.style.color = foregroundHeight > window.innerHeight / 2 ? backgroundColor : foregroundColor;
+        ratingDisplay.style.color = isReversed ? foregroundColor : backgroundColor;
+        ratingDisplay.classList.toggle('switched', isReversed);
     }
 
     updateTextColors();
