@@ -131,7 +131,12 @@ input[type="color"] {
     transform: translate3d(0, 0, 0);
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    perspective: 1000;
     will-change: color, top, bottom;
+    -webkit-user-select: none;
+    user-select: none;
+    pointer-events: auto;
 }
 
 .rating-box::before {

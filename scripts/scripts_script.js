@@ -168,13 +168,21 @@ function updateContrastRatio() {
     if (ratingDisplay) {
         ratingDisplay.style.color = isReversed ? foregroundColor : backgroundColor;
         
-        // Set position explicitly - no CSS class, pure inline styles
-        ratingDisplay.style.bottom = isReversed ? 'auto' : '20px';
-        ratingDisplay.style.top = isReversed ? '20px' : 'auto';
-        
-        // Force iOS Safari repaint
-        void ratingDisplay.offsetHeight;
-        ratingDisplay.style.transform = 'translateZ(0) scale(1)';
+        // Use requestAnimationFrame for iOS Safari compatibility
+        requestAnimationFrame(() => {
+            // Set position explicitly - no CSS class, pure inline styles
+            ratingDisplay.style.bottom = isReversed ? 'auto' : '20px';
+            ratingDisplay.style.top = isReversed ? '20px' : 'auto';
+            
+            // Force iOS Safari repaint with multiple techniques
+            ratingDisplay.style.transform = 'translateZ(0)';
+            void ratingDisplay.offsetHeight;
+            ratingDisplay.style.opacity = '0.99';
+            
+            requestAnimationFrame(() => {
+                ratingDisplay.style.opacity = '1';
+            });
+        });
     }
 
     updateTextColors();
