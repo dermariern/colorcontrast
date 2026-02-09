@@ -130,27 +130,38 @@ function updateContrastRatio() {
 
     // Update rating boxes
     const ratingBoxes = document.querySelectorAll('.rating-box');
-    const containerHeight = window.innerHeight;
+    const ratingDisplay = document.querySelector('.rating-display');
     
-    // Fixed positions for ratings (from top)
-    const positions = {
-        '7.0': containerHeight * 0.2,  // AAA Normal
-        '4.5': containerHeight * 0.4,  // AAA Large & AA Normal
-        '3.0': containerHeight * 0.6   // AA Large
-    };
+    // Define rating levels
+    const levels = [
+        { ratio: 7.0, label: 'AAA', desc: 'Normal Text' },
+        { ratio: 4.5, label: 'AAA', desc: 'Large Text' },
+        { ratio: 4.5, label: 'AA', desc: 'Normal Text' },
+        { ratio: 3.0, label: 'AA', desc: 'Large Text' }
+    ];
     
-    ratingBoxes.forEach(box => {
-        const requiredRatio = parseFloat(box.dataset.ratio);
-        const isActive = ratio >= requiredRatio;
-        box.classList.toggle('active', isActive);
-        
-        const position = positions[requiredRatio.toString()];
-        box.style.top = `${position}px`;
-        
-        // Set color based on position
-        const isInBackgroundSection = position < foregroundHeight;
-        box.style.color = isInBackgroundSection ? backgroundColor : foregroundColor;
-    });
+    // Find the highest achieved level
+    let currentLevel = null;
+    for (let level of levels) {
+        if (ratio >= level.ratio && !currentLevel) {
+            currentLevel = level;
+            break;
+        }
+    }
+    
+    // If no level achieved, show minimum
+    if (!currentLevel) {
+        currentLevel = { ratio: 3.0, label: 'AA', desc: 'Large Text' };
+    }
+    
+    // Update display
+    document.getElementById('current-rating-label').textContent = currentLevel.label;
+    document.getElementById('current-rating-desc').textContent = currentLevel.desc;
+    
+    // Set color based on section
+    if (ratingDisplay) {
+        ratingDisplay.style.color = foregroundHeight > window.innerHeight / 2 ? backgroundColor : foregroundColor;
+    }
 
     updateTextColors();
 }
