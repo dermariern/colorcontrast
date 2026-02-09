@@ -167,19 +167,14 @@ function updateContrastRatio() {
     // Set color and position based on which section it appears in (same as contrast ratio)
     if (ratingDisplay) {
         ratingDisplay.style.color = isReversed ? foregroundColor : backgroundColor;
-        ratingDisplay.classList.toggle('switched', isReversed);
         
-        // Explicitly set position for iOS Safari compatibility
-        if (isReversed) {
-            ratingDisplay.style.bottom = 'auto';
-            ratingDisplay.style.top = '20px';
-        } else {
-            ratingDisplay.style.top = 'auto';
-            ratingDisplay.style.bottom = '20px';
-        }
+        // Set position explicitly - no CSS class, pure inline styles
+        ratingDisplay.style.bottom = isReversed ? 'auto' : '20px';
+        ratingDisplay.style.top = isReversed ? '20px' : 'auto';
         
-        // Force repaint for iOS Safari
-        ratingDisplay.style.transform = 'translateZ(0)';
+        // Force iOS Safari repaint
+        void ratingDisplay.offsetHeight;
+        ratingDisplay.style.transform = 'translateZ(0) scale(1)';
     }
 
     updateTextColors();
@@ -222,6 +217,7 @@ document.querySelectorAll('.color-section').forEach(section => {
 // Initialize display
 updateColorDisplay('color1');
 updateColorDisplay('color2');
+updateContrastRatio(); // Ensure rating display is properly initialized
 
 // Handle browser resize
 window.addEventListener('resize', () => {

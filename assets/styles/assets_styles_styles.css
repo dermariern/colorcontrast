@@ -118,7 +118,6 @@ input[type="color"] {
 .rating-display {
     position: fixed;
     right: 40px;
-    bottom: 20px;
     width: auto;
     padding: 20px 25px;
     opacity: 1;
@@ -133,11 +132,6 @@ input[type="color"] {
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     will-change: color, top, bottom;
-}
-
-.rating-display.switched {
-    bottom: auto;
-    top: 20px;
 }
 
 .rating-box::before {
