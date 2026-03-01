@@ -212,4 +212,17 @@ input[type="color"] {
         --min-section-height: max(200px, 35vh);
         --color-info-padding: 10px;
     }
+
+    /* On narrow viewports, prevent contrast-ratio and rating-display from overlapping */
+    .contrast-ratio {
+        left: 20px;
+        transform: none;
+        max-width: calc(100vw - 100px);
+    }
+
+    .rating-display {
+        right: 20px;
+        left: auto;
+        max-width: 80px;
+    }
 }
