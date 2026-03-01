@@ -217,7 +217,7 @@ input[type="color"] {
     .contrast-ratio {
         left: 20px;
         transform: none;
-        max-width: calc(100vw - 100px);
+        max-width: calc(50% - 60px);
     }
 
     .rating-display {
