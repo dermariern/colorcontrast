@@ -243,3 +243,19 @@ input[type="color"] {
         max-width: 80px;
     }
 }
+
+/* Extra small iPhone/narrow tablet sizes */
+@media screen and (max-width: 390px) {
+    .contrast-ratio {
+        left: 12px;
+        max-width: 140px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .rating-display {
+        right: 12px;
+        max-width: 70px;
+        overflow: hidden;
+    }
+}
