@@ -3,7 +3,7 @@
     --color-info-padding: 15px;
 }
 
-body {
+html, body {
     margin: 0;
     padding: 0;
     height: 100vh;
@@ -11,6 +11,12 @@ body {
     overflow: hidden;
     /* default background matches initial foreground value */
     background-color: #F5EC00;
+}
+
+/* make sure html element also updates on iOS where the body may not span full
+   viewport due to the dynamic address bar; white gaps would show html's bg */
+html {
+    width: 100vw;
 }
 
 .contrast-checker {

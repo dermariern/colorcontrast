@@ -80,9 +80,11 @@ function updateColorDisplay(colorId) {
     foregroundInfo.style.color = backgroundColor;
     backgroundInfo.style.color = foregroundColor;
 
-    // keep body background in sync with the current foreground color so
-    // any leftover gap blends with the top section (and avoids white bands)
+    // keep body+html background in sync with the current foreground color so
+    // any leftover gap blends with the top section (and avoids white bands,
+    // especially on iOS where the html element might show through).
     document.body.style.backgroundColor = foregroundColor;
+    document.documentElement.style.backgroundColor = foregroundColor;
 
     // Update contrast ratio color and position
     const contrastRatio = document.querySelector('.contrast-ratio');
