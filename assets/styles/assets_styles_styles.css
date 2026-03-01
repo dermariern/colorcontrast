@@ -204,6 +204,23 @@ input[type="color"] {
         width: 100%;
         height: 100%;
     }
+
+    /* iOS Safari specific: prevent overlap of contrast ratio and rating display */
+    .contrast-ratio {
+        left: 20px;
+        transform: none;
+        max-width: calc(50% - 80px);
+    }
+
+    .rating-display {
+        right: 20px;
+        left: auto;
+        max-width: 70px;
+    }
+
+    .rating-info {
+        min-width: auto;
+    }
 }
 
 /* Mobile Optimierungen */
