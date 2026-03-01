@@ -105,6 +105,7 @@ input[type="color"] {
     z-index: 2;
     text-align: left;
     padding: 0;
+    padding-left: 6px;
     border-radius: 0;
     transition: all 0.3s ease-in-out;
     bottom: 20px; /* Default position */
@@ -114,6 +115,7 @@ input[type="color"] {
     justify-content: flex-start;
     height: auto;
     min-height: 65px;
+    box-sizing: border-box;
 }
 
 .contrast-ratio.switched {
@@ -210,9 +212,15 @@ input[type="color"] {
 
     /* iOS Safari specific: prevent overlap of contrast ratio and rating display */
     .contrast-ratio {
-        left: calc(40px + var(--color-info-padding));
+        left: calc(40px + var(--color-info-padding) + 6px);
         transform: none;
+        padding-left: 6px;
+        box-sizing: border-box;
         max-width: calc(50% - 80px);
+        /* allow content to wrap instead of being clipped */
+        white-space: normal;
+        word-break: break-word;
+        overflow: visible;
     }
 
     .rating-display {
@@ -235,9 +243,14 @@ input[type="color"] {
 
     /* On narrow viewports, prevent contrast-ratio and rating-display from overlapping */
     .contrast-ratio {
-        left: calc(40px + var(--color-info-padding));
+        left: calc(40px + var(--color-info-padding) + 6px);
         transform: none;
+        padding-left: 6px;
+        box-sizing: border-box;
         max-width: calc(50% - 60px);
+        white-space: normal;
+        word-break: break-word;
+        overflow: visible;
     }
 
     .rating-display {
@@ -250,10 +263,14 @@ input[type="color"] {
 /* Extra small iPhone/narrow tablet sizes */
 @media screen and (max-width: 390px) {
     .contrast-ratio {
-        left: calc(40px + var(--color-info-padding));
+        left: calc(40px + var(--color-info-padding) + 6px);
         max-width: 140px;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        padding-left: 6px;
+        box-sizing: border-box;
+        /* allow wrapping instead of clipping */
+        white-space: normal;
+        word-break: break-word;
+        overflow: visible;
     }
 
     .rating-display {
