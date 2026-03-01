@@ -8,9 +8,19 @@ html, body {
     padding: 0;
     height: 100vh;
     font-family: 'Share Tech Mono', monospace;
-    overflow: hidden;
     /* default background matches initial foreground value */
     background-color: #F5EC00;
+}
+
+body {
+    overflow: hidden;
+}
+
+/* iOS Safari: allow fixed position elements to render beyond body overflow */
+@supports (-webkit-touch-callout: none) {
+    body {
+        overflow: visible;
+    }
 }
 
 /* make sure html element also updates on iOS where the body may not span full
@@ -216,7 +226,8 @@ input[type="color"] {
         transform: none;
         padding-left: 6px;
         box-sizing: border-box;
-        max-width: calc(50% - 80px);
+        max-width: 55vw;
+        right: auto;
         /* allow content to wrap instead of being clipped */
         white-space: normal;
         word-break: break-word;
@@ -247,7 +258,8 @@ input[type="color"] {
         transform: none;
         padding-left: 6px;
         box-sizing: border-box;
-        max-width: calc(50% - 60px);
+        max-width: 60vw;
+        right: auto;
         white-space: normal;
         word-break: break-word;
         overflow: visible;
@@ -264,7 +276,8 @@ input[type="color"] {
 @media screen and (max-width: 390px) {
     .contrast-ratio {
         left: calc(40px + var(--color-info-padding) + 6px);
-        max-width: 140px;
+        max-width: 65vw;
+        right: auto;
         padding-left: 6px;
         box-sizing: border-box;
         /* allow wrapping instead of clipping */
