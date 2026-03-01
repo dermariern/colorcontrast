@@ -126,6 +126,7 @@ input[type="color"] {
     height: auto;
     min-height: 65px;
     box-sizing: border-box;
+    width: max-content;
 }
 
 .contrast-ratio.switched {
@@ -139,6 +140,7 @@ input[type="color"] {
     margin: 0;
     line-height: 1;
     display: block;
+    white-space: nowrap;
 }
 
 /* ...existing code... */
