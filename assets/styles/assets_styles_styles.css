@@ -210,7 +210,7 @@ input[type="color"] {
 
     /* iOS Safari specific: prevent overlap of contrast ratio and rating display */
     .contrast-ratio {
-        left: 40px;
+        left: calc(40px + var(--color-info-padding));
         transform: none;
         max-width: calc(50% - 80px);
     }
@@ -235,7 +235,7 @@ input[type="color"] {
 
     /* On narrow viewports, prevent contrast-ratio and rating-display from overlapping */
     .contrast-ratio {
-        left: 40px;
+        left: calc(40px + var(--color-info-padding));
         transform: none;
         max-width: calc(50% - 60px);
     }
@@ -250,7 +250,7 @@ input[type="color"] {
 /* Extra small iPhone/narrow tablet sizes */
 @media screen and (max-width: 390px) {
     .contrast-ratio {
-        left: 40px;
+        left: calc(40px + var(--color-info-padding));
         max-width: 140px;
         overflow: hidden;
         text-overflow: ellipsis;
