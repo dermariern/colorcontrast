@@ -9,6 +9,8 @@ body {
     height: 100vh;
     font-family: 'Share Tech Mono', monospace;
     overflow: hidden;
+    /* default background matches initial foreground value */
+    background-color: #F5EC00;
 }
 
 .contrast-checker {
