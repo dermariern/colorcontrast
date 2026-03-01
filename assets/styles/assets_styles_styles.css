@@ -226,12 +226,10 @@ input[type="color"] {
         transform: none;
         padding-left: 6px;
         box-sizing: border-box;
-        max-width: 55vw;
+        max-width: 70vw;
         right: auto;
-        /* allow content to wrap instead of being clipped */
-        white-space: normal;
-        word-break: break-word;
         overflow: visible;
+        white-space: nowrap;
     }
 
     .rating-display {
@@ -258,10 +256,9 @@ input[type="color"] {
         transform: none;
         padding-left: 6px;
         box-sizing: border-box;
-        max-width: 60vw;
+        max-width: 72vw;
         right: auto;
-        white-space: normal;
-        word-break: break-word;
+        white-space: nowrap;
         overflow: visible;
     }
 
@@ -276,13 +273,11 @@ input[type="color"] {
 @media screen and (max-width: 390px) {
     .contrast-ratio {
         left: calc(40px + var(--color-info-padding) + 6px);
-        max-width: 65vw;
+        max-width: 75vw;
         right: auto;
         padding-left: 6px;
         box-sizing: border-box;
-        /* allow wrapping instead of clipping */
-        white-space: normal;
-        word-break: break-word;
+        white-space: nowrap;
         overflow: visible;
     }
 
